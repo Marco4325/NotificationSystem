@@ -1,15 +1,25 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import data.messages.Message;
+import fabrics.messages.MessageFactory;
+import services.notifications.NotificationService;
+import strategies.notification.concretes.*;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Message welcomeMessage = MessageFactory.createMessage("SIMPLE", "Bem-vindo(a) ao nosso sistema!");
+        Message alertMessage = MessageFactory.createMessage("URGENT", "Falha crítica detectada no servidor XYZ. Ação imediata requerida.");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        NotificationService notificationService = new NotificationService();
+
+        System.out.println("--- Usando Estratégia de Email ---");
+        notificationService.setStrategy(new EmailNotificationStrategy());
+        notificationService.sendNotification(welcomeMessage, "aluno@exemplo.com");
+        notificationService.sendNotification(alertMessage, "admin@exemplo.com");
+
+        System.out.println("--- Mudando para Estratégia de SMS ---");
+        notificationService.setStrategy(new SMSNotificationStrategy());
+        notificationService.sendNotification(welcomeMessage, "+5511912345678");
+
+        notificationService.sendNotification(alertMessage, "+5521987654321");
+
     }
 }
