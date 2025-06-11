@@ -25,6 +25,9 @@ public class NotificationService {
             System.out.println("Erro: Mensagem não pode ser nula.\n");
             return;
         }
+        if (recipient == null) {
+            System.out.println("Erro: Recipiente não definido.\n");
+        }
         strategy.send(message, recipient);
     }
 }
