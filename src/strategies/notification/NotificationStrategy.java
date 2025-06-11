@@ -1,3 +1,4 @@
+// Contexto de notificações
 package strategies.notification;
 
 import data.messages.Message;
