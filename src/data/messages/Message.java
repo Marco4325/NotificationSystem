@@ -7,9 +7,5 @@ public abstract class Message {
         this.content = content;
     }
 
-    public abstract String format(); // Método para formatar a mensagem específica
-
-    public String getContent() {
-        return content;
-    }
+    public abstract String format();
 }

@@ -8,6 +8,6 @@ public class UrgentMessage extends Message {
 
     @Override
     public String format() {
-        return "";
+        return String.format("\u001B[31m[Urgente]\n\u001B[39;49m%s", content);
     }
 }
